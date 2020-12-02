@@ -1,5 +1,5 @@
 import java.util.*;
-public class day1 {
+public class Day1 {
     static ArrayList<Integer> expenseReportTwoNumbers(ArrayList<Integer> report, int finding){
 
 

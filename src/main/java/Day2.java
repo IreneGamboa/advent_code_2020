@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class day2 {
+public class Day2 {
 
     static int total(String fileName){
         int total = 0;
