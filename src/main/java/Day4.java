@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class Passport {
 
@@ -53,18 +56,21 @@ public class Day4 {
         ArrayList<Passport> listPass = new ArrayList<>();
 
         Passport passport = new Passport();
-        for(String line : lines){
-            if(line.length() == 0){
+        for(int i = 0; i <  lines.size(); i++){
+            if(lines.get(i).length() == 0){
                 listPass.add(passport);
-
                 passport = new Passport();
             } else {
-                String[] passportData = line.split(" ");
+                String[] passportData = lines.get(i).split(" ");
 
                 for (String data : passportData) {
                     String[] dataSplit = data.split(":");
                     passport.setData(dataSplit);
                 }
+            }
+
+            if(i == lines.size()-1){
+                listPass.add(passport);
             }
         }
 
@@ -78,7 +84,6 @@ public class Day4 {
 
         dataPasswords = readFile(fileName);
 
-        System.out.println(dataPasswords.size());
         for(Passport pass : dataPasswords){
             if(isValid(pass)){
                 totalValid++;
@@ -95,24 +100,81 @@ public class Day4 {
     }
 
     static boolean isValid(Passport pass){
-        System.out.println("--------");
-        System.out.println(pass.byr);
-        System.out.println(pass.iyr);
-        System.out.println(pass.eyr);
-        System.out.println(pass.hgt);
-        System.out.println(pass.hcl);
-        System.out.println(pass.ecl);
-        System.out.println(pass.pid);
 
-        if(pass.byr != -1 && pass.iyr != -1 && pass.eyr != -1 && !pass.hgt.isEmpty() &&
-                !pass.hcl.isEmpty() && !pass.ecl.isEmpty() && !pass.pid.isEmpty()) {
-            System.out.println("valid");
-            System.out.println("-------");
+        if(validYear(pass.byr, 1920, 2002) && validYear(pass.iyr, 2010, 2020) && validYear(pass.eyr, 2020, 2030) &&
+                validHeight(pass.hgt) && validHcl(pass.hcl) && validEcl(pass.ecl) && validPid(pass.pid)) {
             return true;
 
         }
-        System.out.println("--------");
 
         return false;
     }
+
+    static boolean validYear(int year, int min, int max){
+        if(year != -1  && year >= min && year <= max){
+            return true;
+        }
+
+        return false;
+    }
+
+    static boolean validHeight(String height){
+        Pattern cm = Pattern.compile("cm"), in = Pattern.compile("in");
+        Matcher matcherCm = cm.matcher(height) , matcherIn = in.matcher(height);
+
+        if(!height.isEmpty() && matcherCm.find()){
+            int centimeters = Integer.parseInt(height.substring(0, height.length() - 2));
+            if( centimeters >= 150 && centimeters <= 193){
+                return true;
+            }
+        }
+
+        if(matcherIn.find()){
+            int inches = Integer.parseInt(height.substring(0, height.length() - 2));
+            if( inches >= 59 && inches <= 76){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static boolean validHcl(String hcl){
+        Pattern regexHcl = Pattern.compile("#[0-9a-f]{6}");
+        Matcher matcherHcl = regexHcl.matcher(hcl);
+
+        if(!hcl.isEmpty() && matcherHcl.find()){
+            return true;
+        }
+        return false;
+    }
+
+    static boolean validEcl(String ecl){
+        HashSet<String> eclRequire = new HashSet<>();
+        eclRequire.add("amb");
+        eclRequire.add("blu");
+        eclRequire.add("brn");
+        eclRequire.add("gry");
+        eclRequire.add("grn");
+        eclRequire.add("hzl");
+        eclRequire.add("oth");
+
+        if(!ecl.isEmpty() && eclRequire.contains(ecl)){
+
+            return true;
+        }
+        return false;
+    }
+
+    static boolean validPid(String pid){
+        Pattern regexPid = Pattern.compile("\\d{9}");
+        Matcher matcherPid= regexPid.matcher(pid);
+
+        if(!pid.isEmpty() && matcherPid.find()){
+
+            return true;
+        }
+        return false;
+    }
+
 }
