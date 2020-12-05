@@ -8,8 +8,11 @@ public class AdventCodeMain {
         Day2 testDay2 = new Day2();
         Day3 testDay3 = new Day3();
         Day4 testDay4 = new Day4();
+        Day5 testDay5 = new Day5();
 
-        testDay4.totalValid();
+        System.out.println(testDay5.myTicket());
+
+//        testDay4.totalValid();
 
 //        testDay3.callCountTrees();
 
