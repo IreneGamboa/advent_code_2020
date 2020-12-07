@@ -21,9 +21,11 @@ public class Day5 {
                         minRow = (minRow + maxRow+1) / 2;
                         break;
                     case 'L':
-                        maxColumn = (minColumn + maxColumn-1) / 2;
+                        maxColumn = (minColumn + maxColumn) / 2;
+                        break;
                     case 'R':
-                        minColumn = (minColumn + maxColumn + 1) / 2;
+                        minColumn = (minColumn + maxColumn) / 2;
+                        break;
                 }
             }
             seatsID.add(maxRow * 8 + maxColumn);
@@ -47,15 +49,15 @@ public class Day5 {
 //        Collections.sort(seatsID);
 //        System.out.println(seatsID);
         for(Integer seatID: seatsID){
-//            System.out.println(seatID);
+            System.out.println(seatID);
 //            System.out.println(seatID + 2);
 //            System.out.println(seatID + 1);
 //            System.out.println("----");
            if(seatsID.contains(seatID + 2) && !seatsID.contains(seatID + 1)){
-               System.out.println(seatsID.get(seatID + 2));
+////               System.out.println(seatsID.get(seatID + 2));
                System.out.println("here: " + (seatID + 1));
-               myTicket = seatID + 1;
-//               return myTicket;
+                myTicket = seatID + 1;
+               return myTicket;
            }
         }
         return myTicket;

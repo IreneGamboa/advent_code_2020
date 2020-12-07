@@ -9,8 +9,9 @@ public class AdventCodeMain {
         Day3 testDay3 = new Day3();
         Day4 testDay4 = new Day4();
         Day5 testDay5 = new Day5();
+        Day6 testDay6 = new Day6();
 
-        System.out.println(testDay5.myTicket());
+        testDay6.readInput("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-6.txt");
 
 //        testDay4.totalValid();
 
