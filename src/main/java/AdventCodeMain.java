@@ -10,20 +10,10 @@ public class AdventCodeMain {
         Day4 testDay4 = new Day4();
         Day5 testDay5 = new Day5();
         Day6 testDay6 = new Day6();
+        Day7 testDay7 = new Day7();
 
-        testDay6.readInput("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-6.txt");
+        testDay7.generateBagRules("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-7.txt");
 
-//        testDay4.totalValid();
-
-//        testDay3.callCountTrees();
-
-//        System.out.println(lines.size());
-
-//        System.out.println(testDay2.total("/Users/irenegamboapadilla/Desktop/input_day2.txt"));
-//        1-8 n: dpwpmhknmnlglhjtrbpx
-//        11-12 n: frpknnndpntnncnnnnn
-
-//        System.out.println(testDay2.isPasswordTwo(11, 12, 'n', "frpknnndpntnncnnnnn"));
-        System.out.println();
+//
     }
 }
