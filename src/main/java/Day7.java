@@ -27,7 +27,7 @@ public class Day7 {
         ArrayList<String> lines = read.reader(fileName);
         HashMap<String,ArrayList> bagRules = new HashMap<>();
         HashMap<String,ArrayList> bagRulesReverse = new HashMap<>();
-        ArrayList<Rule> rules = new ArrayList<>();
+
         ArrayList<String> rules2 = new ArrayList<>();
         String bag = "";
         String bagContains = "";
@@ -35,6 +35,7 @@ public class Day7 {
         for(String line:lines) {
             bag = line.split("bags")[0].strip();
             bagContains = line.split("contain")[1].strip();
+            ArrayList<Rule> rules = new ArrayList<>();
             for (String contain : bagContains.split(",")){
                 rules.addAll(getBagsContain(contain));
                 reverse = getReverse(bag, contain);
@@ -51,7 +52,7 @@ public class Day7 {
 
         String findingBag = "shiny gold";
         System.out.println(getBagsContainsOtherBag(findingBag, bagRulesReverse).size());
-        totalBagsContain(findingBag, bagRules);
+        System.out.println(totalBagsContain(findingBag, bagRules));
     }
 
     static ArrayList<Rule> getBagsContain(String bag){
@@ -97,11 +98,12 @@ public class Day7 {
         return reviewedBags;
     }
 
-    static int totalBagsContain(String findingBag, HashMap<String, ArrayList> rules){
-        int total = 0;
+    static Integer totalBagsContain(String findingBag, HashMap<String, ArrayList> rules){
+        Integer total = 0;
         ArrayList<Rule> bagsContains = rules.getOrDefault(findingBag, new ArrayList());
 //      System.out.println(bagsContains);
-        for(Rule rule:bagsContains){
+        for(int i = 0; i < bagsContains.size(); i++){
+            Rule rule = bagsContains.get(i);
             String bag = rule.bagType;
             Integer amount = rule.amount;
             total = total + amount + amount * totalBagsContain(bag, rules);
