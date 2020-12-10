@@ -12,11 +12,14 @@ public class AdventCodeMain {
         Day6 testDay6 = new Day6();
         Day7 testDay7 = new Day7();
         Day8 testDay8 = new Day8();
+        Day9 testDay9 = new Day9();
 
 //        testDay7.generateBagRules("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-7.txt");
-        ArrayList<String> instructions = testDay8.getInstructions("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-8.txt");
-        System.out.println(testDay8.process(instructions).accumulator);
-        System.out.println(testDay8.possibleOperation(instructions));
+//        ArrayList<String> instructions = testDay8.getInstructions("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-8.txt");
+//        System.out.println(testDay8.process(instructions).accumulator);
+//        System.out.println(testDay8.possibleOperation(instructions));
+
+        testDay9.callFunction("/Users/irenegamboapadilla/IdeaProjects/advent_code_2020/input-9.txt");
 
 //
     }
